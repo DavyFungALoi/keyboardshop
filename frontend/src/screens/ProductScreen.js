@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   Row,
-  Column,
   Image,
   ListGroup,
   Card,
@@ -10,10 +9,18 @@ import {
   Col,
 } from "react-bootstrap";
 import Rating from "../components/Rating";
-import products from "../products";
+import axios from 'axios'
 
 const ProductScreen = ({ match }) => {
-  const product = products.find((p) => p._id === match.params.id);
+  const [product, setProduct] = useState({});
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const { data } = await axios.get(`/api/products/${match.params.id}`);
+      ///data is a descructured way of saying res, normmally its const res = aka res.data
+      setProduct(data);
+    };
+    fetchProduct();
+  }, []);
 
   return (
     <div>
@@ -54,15 +61,18 @@ const ProductScreen = ({ match }) => {
                 <Row>
                   <Col>Status:</Col>
                   <Col>
-                    {product.countInStock > 0? 'In Stock': 'Out of stock'}
+                    {product.countInStock > 0 ? "In Stock" : "Out of stock"}
                   </Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
-                  <Button className='btn-block' type='button' disabled={product.countInStock === 0}>
-                      Add To Cart
-                  </Button>
-
+                <Button
+                  className="btn-block"
+                  type="button"
+                  disabled={product.countInStock === 0}
+                >
+                  Add To Cart
+                </Button>
               </ListGroup.Item>
             </ListGroup>
           </Card>
