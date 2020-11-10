@@ -3,11 +3,9 @@ import Product from "../models/productModel.js";
 import asyncHandler from "express-async-handler";
 const router = express.Router();
 
-
-
 //@desc        Fetch All Products
 //@route       GET /api/products
-//@access      Public        
+//@access      Public
 router.get(
   "/",
   asyncHandler(async (req, res) => {
@@ -19,7 +17,7 @@ router.get(
 
 //@desc        Fetch single Products
 //@route       GET /api/products/id
-//@access      Public   
+//@access      Public
 
 router.get(
   "/:id",
@@ -28,8 +26,8 @@ router.get(
     if (product) {
       res.json(product);
     } else {
-      res.status(404)
-      throw new Error ('Product not Found')
+      res.status(404);
+      throw new Error("Product not Found");
     }
   })
 );
