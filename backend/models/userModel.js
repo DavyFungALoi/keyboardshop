@@ -29,7 +29,7 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password)
 
 }
-///this. allows access to the password in the fields.
+///this. allows access to the password in the fields by adding a method to the schema, you can call this without importing it.
 
 const User = mongoose.model("User", userSchema);
 
