@@ -31,6 +31,19 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
 }
 ///this. allows access to the password in the fields by adding a method to the schema, you can call this without importing it.
 
+userSchema.pre("save", async function (next){
+  if (!this.isModified('password')) {  ///checks if password has been changed, if password hasn't been changed this shouldn't run, it calls next to continue with doing stuff
+    next()
+  }
+
+  const salt =  await bcrypt.genSalt(10)
+  this.password = await bcrypt.hash(this.password, salt)
+})
+
+///this middleware function will run pre save every time
+
+
+
 const User = mongoose.model("User", userSchema);
 
 export default User;
