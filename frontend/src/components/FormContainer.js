@@ -1,5 +1,5 @@
 import React from 'react'
-import {Container, from, Col, Row} from 'react-bootstrap'
+import {Container, Col, Row} from 'react-bootstrap'
 
 export const FormContainer = ({children}) => {
     return (
@@ -12,3 +12,5 @@ export const FormContainer = ({children}) => {
         </Container>
     )
 }
+
+export default FormContainer
