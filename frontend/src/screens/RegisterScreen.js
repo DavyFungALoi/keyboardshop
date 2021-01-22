@@ -30,7 +30,7 @@ export const RegisterScreen = ({ location, history }) => {
     e.preventDefault();
     ///DISPATCH REGISTER
     if (password !== confirmPassword) {
-      setMessage("Paasswords do not match");
+      setMessage("Passswords do not match");
     } else {
       dispatch(register(name, email, password));
     }
