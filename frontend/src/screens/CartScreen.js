@@ -115,4 +115,3 @@ const CartScreen = ({ match, location, history }) => {
 
 export default CartScreen;
 
-/// <h2>Subtotal({cart.Items.reduce((acc, item) => acc + item.qty, 0)}) items</h2>
