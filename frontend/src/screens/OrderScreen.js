@@ -14,6 +14,9 @@ const OrderScreen = ({ match }) => {
   const { order, loading, error } = orderDetails;
   const [sdkReady, setSdkReady] = useState(false)
 
+  const orderPay = useSelector((state) => state.orderPay);
+  const {loading: loadingPay, success:successPay } = orderPay;
+
 
   if (!loading)  {
   const addDecimals = (num) => {
@@ -28,7 +31,7 @@ const OrderScreen = ({ match }) => {
       const {data: clientId} = await axios.get('/api/config/paypal')
       const script = document.createElement('script')
       script.type='text/javascript'
-      script.src=`https://www.paypal.com/sdk/js?client-id=${clientId}"></script>`
+      script.src=`https://www.paypal.com/sdk/js?client-id=${clientId}`
       script.async=true
       script.onload = () => {
         setSdkReady(true)
@@ -37,9 +40,19 @@ const OrderScreen = ({ match }) => {
 
     }
     addPayPalScript()
+    if(!order || successPay) {
+      dispatch(getOrderDetails(orderId))
+
+    } else if (!order.isPaid) {
+      if(!window.paypal) {
+        addPayPalScript()
+      } else {
+        setSdkReady(true)
+      }
+    }
 
     dispatch(getOrderDetails(orderId));
-  }, [dispatch, orderId]);
+  }, [dispatch, orderId, successPay]);
 
   return loading ? (
     <Loader />
