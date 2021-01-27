@@ -37,7 +37,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
 });
 
 //@desc        Create order by id
-//@route       GET /api/orders/:id
+//@route       GET /api/orders/:id/pay
 //@access      Private
 
 const getOrderById = asyncHandler(async (req, res) => {
@@ -55,10 +55,15 @@ const getOrderById = asyncHandler(async (req, res) => {
 
 const updateOrderToPaid = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id)
+  console.log(order.isPaid)
   if (order) {
+    console.log(order.isPaid)
     order.isPaid=true
     order.paidAt=Date.now()
-    order.paymentResult={id:request.body.id, status: request.body.status, update_time: req.body.update_time, email_address: req.body.payer.email_address}
+    order.paymentResult={id:req.body.id, status: req.body.status, update_time: req.body.update_time, email_address: req.body.payer.email_address}
+    console.log(order.paymentResult
+      )
+      
 
     const updatedOrder = await order.save()
     res.json(updatedOrder)

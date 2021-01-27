@@ -95,9 +95,12 @@ const OrderScreen = ({ match }) => {
                 <Message variant="success">Paid on {order.deliveredAt}</Message>
               ) : (
                 <Message>
-                  <Message variant="danger">Not Paid</Message>
+                  <Message variant="danger">Not yet Delivered</Message>
                 </Message>
               )}
+              
+         
+            
             </ListGroup.Item>
 
             <ListGroup.Item>
