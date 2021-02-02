@@ -29,7 +29,7 @@ const PlaceOrderScreen = ({history}) => {
       console.log("success")
       history.push(`/orders/${order._id}`)
     }
-  },[history, success])
+  },[history, success, order._id])
 
   const placeOrderHandler = () => {
    dispatch(createOrder({

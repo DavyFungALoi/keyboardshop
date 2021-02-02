@@ -23,7 +23,7 @@ const UserListSCreen = ({ history }) => {
     } else {
       history.push("/login");
     }
-  }, [dispatch, history, successDelete]);
+  }, [dispatch, history, successDelete, userInfo]);
 
   ///passing in successDelete makes it so it gets reloaded/triggered to refrfresh the state with a new list of users
 
@@ -66,7 +66,7 @@ const UserListSCreen = ({ history }) => {
                   )}
                 </td>
                 <td>
-                  <LinkContainer to={`/user/${user._id}/edit`}>
+                  <LinkContainer to={`admin//user/${user._id}/edit`}>
                     <Button variant="light" className="btn-sm">
                       <i className="fas fa-edit"></i>
                     </Button>
