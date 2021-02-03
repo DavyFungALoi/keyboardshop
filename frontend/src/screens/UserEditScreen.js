@@ -19,9 +19,17 @@ export const UserEditScreen = ({ match, history }) => {
   const { loading, error, user } = userDetails;
   ///taken from userReducers
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (!user.name || user._id !== userId) {
+      dispatch(getUserDetails(userId));
+    } else {
+      setName(user.name);
+      setEmail(user.email);
+      setIsAdmin(user.isAdmin);
+    }
+  }, [dispatch, user, userId]);
 
-  const Submithandler = (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
     ///DISPATCH update
   };
@@ -38,7 +46,7 @@ export const UserEditScreen = ({ match, history }) => {
         ) : error ? (
           <Message variant="danger">{error}</Message>
         ) : (
-          <Form onSubmit={Submithandler}>
+          <Form onSubmit={submitHandler}>
             <Form.Group controlId="name">
               <Form.Label>Name</Form.Label>
               <Form.Control
@@ -61,14 +69,13 @@ export const UserEditScreen = ({ match, history }) => {
             <Form.Group controlId="isadmin">
               <Form.Check
                 type="checkbox"
-                label = "Is admin"
-                checked = {isAdmin}
+                label="Is admin"
+                checked={isAdmin}
                 onChange={(e) => setIsAdmin(e.target.checked)}
                 ///E target check checks it instead of value so it works with a checkbox based on false or true
               ></Form.Check>
             </Form.Group>
-    
-      
+
             <Button type="submit" variant="primary">
               Update
             </Button>
