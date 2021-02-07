@@ -11,7 +11,7 @@ const router = express.Router()
 ///multer is a middleware used to create 
 const storage = multer.diskStorage({
     destination(req, file, cb) {
-        cb(null, '/uploads')
+        cb(null, 'uploads/')
     },
     filename(req, file, cb) {
         cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`)
@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
 ///mimetype checks for the corret type (hast o be image)
 function checkFileType(file, cb) {
     const filetypes = /jpg|jpeg|png/
-    const extname=filetypes.test(path.extname(originalname).toLocaleLowerCase())
+    const extname=filetypes.test(path.extname(file.originalname).toLocaleLowerCase())
     const mimetype =filetypes.test(file.mimetype)
     if(extname && mimetype) {
         return cb(null, true)
@@ -42,3 +42,4 @@ router.post('/', upload.single('image'), (req, res) => {
 })
 
 export default router
+
