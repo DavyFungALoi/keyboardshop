@@ -9,6 +9,7 @@ const router = express.Router()
 
 ///path is added to add make sure it has the corrext extension (e.g jpg or png)
 ///multer is a middleware used to create 
+///make sure to get thec orrect pathing going with uploads/
 const storage = multer.diskStorage({
     destination(req, file, cb) {
         cb(null, 'uploads/')
