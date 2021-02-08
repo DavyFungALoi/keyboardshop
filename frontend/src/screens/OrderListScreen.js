@@ -9,8 +9,8 @@ import { getOrders } from "../actions/orderActions";
 
 const OrderListScreen = ({ history }) => {
   const dispatch = useDispatch();
-  const userList = useSelector((state) => state.userList);
-  const { loading, error, users } = userList;
+
+
 
   const orderList = useSelector((state) => state.orderList);
   const { loading: orderLoading, error: ordererror, orders } = orderList;
@@ -29,10 +29,10 @@ const OrderListScreen = ({ history }) => {
   return (
     <>
       <h1>Orders</h1>
-      {loading ? (
+      {orderLoading ? (
         <Loader></Loader>
-      ) : error ? (
-        <Message variant="danger">{error}</Message>
+      ) : ordererror ? (
+        <Message variant="danger">{ordererror}</Message>
       ) : (
         <Table striped bordered hover responsive className="table-sm">
           <thead>

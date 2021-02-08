@@ -20,7 +20,7 @@ const OrderScreen = ({ match, history }) => {
   const { loading: loadingPay, success: successPay } = orderPay;
 
   const orderDeliver = useSelector((state) => state.orderDeliver);
-  const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
+  const {success: successDeliver } = orderDeliver;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -67,7 +67,7 @@ const OrderScreen = ({ match, history }) => {
     }
 
     dispatch(getOrderDetails(orderId));
-  }, [dispatch, orderId, successPay,successDeliver]);
+  }, [dispatch, orderId, successPay,successDeliver, history, userInfo]);
 
   const successPaymentHandler = (paymentResult) => {
     dispatch(payOrder(orderId, paymentResult))
