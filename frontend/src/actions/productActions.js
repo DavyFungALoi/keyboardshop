@@ -165,7 +165,7 @@ export const createProductReview = (productId, review) => async (dispatch, getSt
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.post(`/api/products/${productId}`,review, config);
+    const { data } = await axios.post(`/api/products/${productId}/reviews`,review, config);
  ///pass in the review as a second parameter to pass the data
     dispatch({
       type: PRODUCT_CREATE_REVIEW_SUCCESS,
