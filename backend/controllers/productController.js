@@ -6,7 +6,7 @@ import asyncHandler from "express-async-handler";
 //@access      Public
 
 const getProducts = asyncHandler(async (req, res) => {
-  const pageSize = 4;
+  const pageSize = 2;
   ///determines the amount of products to be shown on a single page
   const page = Number(req.query.pageNumber) || 1
 
@@ -26,7 +26,7 @@ const getProducts = asyncHandler(async (req, res) => {
   //get the product count
   const products = await Product.find({ ...keyword })
     .limit(pageSize)
-    .skip(pageSize * (page - 1));
+    .skip(pageSize * (page -1));
   ///if keyword is true spread operator it to find the matched product
   res.json({ products, page, pages: Math.ceil(count / pageSize) });
 });
