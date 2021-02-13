@@ -20,11 +20,16 @@ import {
   PRODUCT_UPDATE_SUCCESS,
 } from "../constants/productConstants.js";
 
-export const listProducts = (keyword = "") => async (dispatch) => {
+export const listProducts = (keyword = "", pageNumber = "") => async (
+  dispatch
+) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
 
-    const { data } = await axios.get(`/api/products?keyword=${keyword}`);
+    const { data } = await axios.get(
+      `/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
+    );
+    ///if keyword exists, checks the keyword, indicated by ?, you set it to the keyword with string interpolation, by default its empty ""
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -99,7 +104,7 @@ export const createProduct = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.post(`/api/products`,{}, config);
+    const { data } = await axios.post(`/api/products`, {}, config);
     ///sending an empty object as parameter sbecause we are not changing any data makes it so it can bypass an error with bearer token(?)
     dispatch({
       type: PRODUCT_CREATE_SUCCESS,
@@ -132,13 +137,16 @@ export const updateProduct = (product) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.put(`/api/products/${product._id}`,product, config);
- ///pass in the product as a second parameter to pass the data
+    const { data } = await axios.put(
+      `/api/products/${product._id}`,
+      product,
+      config
+    );
+    ///pass in the product as a second parameter to pass the data
     dispatch({
       type: PRODUCT_UPDATE_SUCCESS,
       payload: data,
     });
-
   } catch (error) {
     dispatch({
       type: PRODUCT_UPDATE_FAIL,
@@ -150,8 +158,10 @@ export const updateProduct = (product) => async (dispatch, getState) => {
   }
 };
 
-
-export const createProductReview = (productId, review) => async (dispatch, getState) => {
+export const createProductReview = (productId, review) => async (
+  dispatch,
+  getState
+) => {
   try {
     dispatch({
       type: PRODUCT_CREATE_REVIEW_REQUEST,
@@ -165,12 +175,15 @@ export const createProductReview = (productId, review) => async (dispatch, getSt
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.post(`/api/products/${productId}/reviews`,review, config);
- ///pass in the review as a second parameter to pass the data
+    const { data } = await axios.post(
+      `/api/products/${productId}/reviews`,
+      review,
+      config
+    );
+    ///pass in the review as a second parameter to pass the data
     dispatch({
       type: PRODUCT_CREATE_REVIEW_SUCCESS,
     });
-
   } catch (error) {
     dispatch({
       type: PRODUCT_CREATE_REVIEW_FAIL,
@@ -181,4 +194,3 @@ export const createProductReview = (productId, review) => async (dispatch, getSt
     });
   }
 };
-

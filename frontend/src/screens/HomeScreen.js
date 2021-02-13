@@ -17,6 +17,7 @@ const HomeScreen = ({match}) => {
   useEffect(() => {
     dispatch(listProducts(keyword));
   }, [dispatch, keyword]);
+  //add keyword to useeffect to reset every time you use the search functionality
 
   return (
     <>
