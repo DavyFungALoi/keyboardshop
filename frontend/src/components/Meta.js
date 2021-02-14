@@ -1,5 +1,4 @@
 import React from 'react'
-import { PopoverTitle } from 'react-bootstrap'
 import {Helmet} from 'react-helmet'
 
 const Meta = ({title, description, keywords}) => {

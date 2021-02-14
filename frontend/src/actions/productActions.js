@@ -178,7 +178,7 @@ export const createProductReview = (productId, review) => async (
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.post(
+    await axios.post(
       `/api/products/${productId}/reviews`,
       review,
       config
@@ -202,7 +202,8 @@ export const listTopProducts = () => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_TOP_REQUEST });
 
-    const { data } = await axios.get(`api/products/top`);
+    const { data } = await axios.get(`/api/products/top`);
+    
 
     dispatch({ type: PRODUCT_TOP_SUCCESS, payload: data });
   } catch (error) {
