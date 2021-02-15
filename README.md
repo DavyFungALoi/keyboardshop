@@ -1,68 +1,56 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This Project demonstrates the use of MERN with Redux to create a webshop
 
-## Available Scripts
+It has the following features & Tech Stack:
 
-In the project directory, you can run:
+MERN
 
-### `npm start`
+Mongoose
+Express
+React
+Node
+Redux for state management
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+CSS
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+React-Bootstrap
 
-### `npm test`
+Libraries can be found in the package json and include but are not limited to
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Bcryptjs for security
+jsonwebtoken for checking for security
+nodemon for reloading
+morgan for logging
+multer for uploading images
+express async handler to help loading and importing.
 
-### `npm run build`
+How to use
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Download the git repository
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Run NPM Install to install all of the dependencies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Make sure to install dotenv to create local environment variables.
 
-### `npm run eject`
+The website will be empty at first, this is because it uses data from the backend.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Create your own data base (MongoAtlas was used for this project)
+- Fill in the missing .env variables:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+NODE_ENV =development
+PORT = 5000 or your preferred port
+MONGO_URI = {MONGODB URL} from a MongoDB server
+JWT_SECRET = {JWTPAsscode} from JWTtokens
+PAYPAL_CLIENT_ID = {PaypalID} from a Paypal Sandbox ID
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Then run "NPM run data:import" to load in some placeholder data
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Then run "NPM run dev" to run the project, you can find it on http://localhost:3000/
 
-## Learn More
+In order to create or delete items and see other functionality, you need to login as Admin.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+You can set the isAdmin variable to true in the backend of your database and then login with that, that will allow you to edit everything else and mark other uses as admin.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Enjoy the project!
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
