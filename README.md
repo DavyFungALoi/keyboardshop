@@ -50,6 +50,8 @@ In order to create or delete items and see other functionality, you need to logi
 
 You can set the isAdmin variable to true in the backend of your database and then login with that, that will allow you to edit everything else and mark other uses as admin.
 
+This project was build off the MERN course tutorial by Brad Traversy.
+
 Enjoy the project!
 
 
